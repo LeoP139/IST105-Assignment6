@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bitwise',
+    'djongo',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +79,10 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'cctbdb',
         'CLIENT': {
-            'host': 'mongodb://cctb1:cctb2025@3.82.126.115:27017/cctbdb?authSource=cctbdb',
+            'host': 'mongodb://cctb1:cctb2025@3.82.126.115:27017/cctbdb?authSource=cctbdb'
         }
     }
 }
-
 
 
 # Password validation
