@@ -4,34 +4,21 @@
     <title>Results</title>
 </head>
 <body>
-    <h1>Calculation Results</h1>
-    
-    {% if negative_warning %}
-        <div style="color: red; font-weight: bold;">
-            Warning: Negative values detected!
-        </div>
+    <h2>Input Form</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if result %}
+        <h2>Processed Results</h2>
+        <p><strong>Original Values:</strong> {{ result.original }}</p>
+        <p><strong>Average:</strong> {{ result.average }}</p>
+        <p><strong>Is Average > 50:</strong> {{ result.is_above_50 }}</p>
+        <p><strong>Count of Positive Numbers:</strong> {{ result.positives }}</p>
+        <p><strong>Even or Odd:</strong> {{ result.even_odd }}</p>
+        <p><strong>Values Greater Than 10 (Sorted):</strong> {{ result.greater_than_10 }}</p>
     {% endif %}
-    
-    <h2>Input Values</h2>
-    <p>{{ original }}</p>
-    
-    <h2>Filtered & Sorted Values (>10)</h2>
-    <p>{{ sorted }}</p>
-    
-    <h2>Calculations</h2>
-    <p>Average: {{ average }} ({{ average_check|yesno:"Above 50,Below 50" }})</p>
-    <p>Positive Numbers: {{ positive_count }} ({{ parity }})</p>
-    
-    <h2>Recent Entries</h2>
-    <ul>
-        {% for result in results %}
-        <li>
-            {{ result.timestamp|date:"Y-m-d H:i" }}: 
-            {{ result.original_values }} → Avg: {{ result.average|floatformat:2 }}
-        </li>
-        {% endfor %}
-    </ul>
-    
-    <p><a href="{% url 'input' %}">New Calculation</a></p>
 </body>
 </html>
