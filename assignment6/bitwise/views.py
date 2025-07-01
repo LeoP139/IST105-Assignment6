@@ -10,11 +10,8 @@ def home(request):
             nums = [form.cleaned_data['a'], form.cleaned_data['b'],
                     form.cleaned_data['c'], form.cleaned_data['d'],
                     form.cleaned_data['e']]
-            
-            warnings = []
-            if any(n < 0 for n in nums):
-                warnings.append("Hay números negativos.")
 
+            warnings = []
             average = sum(nums) / len(nums)
             average_check = average > 50
             positive_count = sum(1 for n in nums if n > 0)
@@ -31,9 +28,9 @@ def home(request):
                 'warnings': warnings
             }
 
-            # Reemplaza con la IP privada de tu EC2 MongoDB
-            client = MongoClient("mongodb://<MONGODB_EC2_PRIVATE_IP>:27017/")
-            db = client["assignment6"]
+            # Conexión MongoDB (reemplaza la IP por la real de tu MongoDB EC2)
+            client = MongoClient("mongodb://cctb:cctb2025@<MONGO_EC2_PUBLIC_IP>:27017/cctbdb?authSource=cctbdb")
+            db = client["cctbdb"]
             collection = db["submissions"]
 
             entry = {
