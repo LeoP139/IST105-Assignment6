@@ -12,3 +12,6 @@ class Submission(models.Model):
     even_odd = models.JSONField()
     greater_than_10 = models.JSONField()
     created_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name = "Submission"
+        verbose_name_plural = "Submissions"
