@@ -1,13 +1,14 @@
 from djongo import models
 
-class CalculationResult(models.Model):
-    original_values = models.JSONField()
-    sorted_values = models.JSONField()
+class Submission(models.Model):
+    input_a = models.IntegerField()
+    input_b = models.IntegerField()
+    input_c = models.IntegerField()
+    input_d = models.IntegerField()
+    input_e = models.IntegerField()
     average = models.FloatField()
-    average_check = models.BooleanField()
-    positive_count = models.IntegerField()
-    positive_parity = models.CharField(max_length=5)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-timestamp']
+    is_above_50 = models.BooleanField()
+    positives = models.IntegerField()
+    even_odd = models.JSONField()
+    greater_than_10 = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
