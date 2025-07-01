@@ -1,8 +1,8 @@
 from django import forms
 
-class NumberForm(forms.Form):
-    a = forms.IntegerField(min_value=0, label="Number A")
-    b = forms.IntegerField(min_value=0, label="Number B")
-    c = forms.IntegerField(min_value=0, label="Number C")
-    d = forms.IntegerField(min_value=0, label="Number D")
-    e = forms.IntegerField(min_value=0, label="Number E")
+class NumberInputForm(forms.Form):
+    a = forms.FloatField(label='Value A', required=True)
+    b = forms.FloatField(label='Value B', required=True)
+    c = forms.FloatField(label='Value C', required=True)
+    d = forms.FloatField(label='Value D', required=True)
+    e = forms.FloatField(label='Value E', required=True)

@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Resultados</title>
+    <title>Results</title>
 </head>
 <body>
-    <h2>Formulario</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
-    </form>
-
-    {% if result %}
-        <h2>Resultados</h2>
-        <p><strong>Original:</strong> {{ result.original }}</p>
-        <p><strong>Par o Impar:</strong> {{ result.even_odd }}</p>
-        <p><strong>Promedio:</strong> {{ result.average }} {% if result.average_check %}(> 50){% endif %}</p>
-        <p><strong>Positivos:</strong> {{ result.positive_count }}</p>
-        <p><strong>Mayores a 10 (ordenados):</strong> {{ result.greater_than_10 }}</p>
-        {% if result.warnings %}
-            <p style="color:red;"><strong>Advertencias:</strong> {{ result.warnings }}</p>
-        {% endif %}
+    <h1>Calculation Results</h1>
+    
+    {% if negative_warning %}
+        <div style="color: red; font-weight: bold;">
+            Warning: Negative values detected!
+        </div>
     {% endif %}
+    
+    <h2>Input Values</h2>
+    <p>{{ original }}</p>
+    
+    <h2>Filtered & Sorted Values (>10)</h2>
+    <p>{{ sorted }}</p>
+    
+    <h2>Calculations</h2>
+    <p>Average: {{ average }} ({{ average_check|yesno:"Above 50,Below 50" }})</p>
+    <p>Positive Numbers: {{ positive_count }} ({{ parity }})</p>
+    
+    <h2>Recent Entries</h2>
+    <ul>
+        {% for result in results %}
+        <li>
+            {{ result.timestamp|date:"Y-m-d H:i" }}: 
+            {{ result.original_values }} → Avg: {{ result.average|floatformat:2 }}
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <p><a href="{% url 'input' %}">New Calculation</a></p>
 </body>
 </html>
