@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados - Assignment 6</title>
+</head>
+<body>
+    <h2>Formulario</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+
+    {% if result %}
+        <h2>Resultados</h2>
+        <p><strong>Original:</strong> {{ result.original }}</p>
+        <p><strong>Par o Impar:</strong> {{ result.even_odd }}</p>
+        <p><strong>Promedio:</strong> {{ result.average }} {% if result.average_check %}(> 50){% endif %}</p>
+        <p><strong>Positivos:</strong> {{ result.positive_count }}</p>
+        <p><strong>Mayores a 10 (ordenados):</strong> {{ result.greater_than_10 }}</p>
+        {% if result.warnings %}
+            <p style="color:red;"><strong>Advertencias:</strong> {{ result.warnings }}</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
