@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'cctbdb',
         'CLIENT': {
-            'host': 'mongodb://cctb:cctb2025@<MONGO_EC2_PUBLIC_IP>:27017/cctbdb?authSource=cctbdb',
+            'host': 'mongodb://cctb:cctb2025@3.82.126.115:27017/cctbdb?authSource=cctbdb',
         }
     }
 }
