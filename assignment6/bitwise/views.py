@@ -17,7 +17,7 @@ def home(request):
             average = sum(inputs) / 5
             is_above_50 = average > 50
             positives = sum(1 for i in inputs if i > 0)
-            even_odd = ["Par" if i % 2 == 0 else "Impar" for i in inputs]
+            even_odd = ["Even" if i % 2 == 0 else "Odd" for i in inputs]
             greater_than_10 = sorted([i for i in inputs if i > 10])
 
             result = {
